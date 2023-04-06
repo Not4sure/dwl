@@ -48,6 +48,11 @@ static const struct xkb_rule_names xkb_rules = {
 static const int repeat_rate = 25;
 static const int repeat_delay = 600;
 
+/* gb will be set the first time togglekblayout is called, then us.. it is
+ * recommended to set the same layout in position 0 of kblayouts and in xkb_rules 
+ */
+static const char *kblayouts[] = {"us", "gb"};
+
 /* Trackpad */
 static const int tap_to_click = 1;
 static const int tap_and_drag = 1;
@@ -142,6 +147,7 @@ static const Key keys[] = {
 	TAGKEYS(          XKB_KEY_8, XKB_KEY_asterisk,                   7),
 	TAGKEYS(          XKB_KEY_9, XKB_KEY_parenleft,                  8),
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Q,          quit,           {0} },
+    { MODKEY,                    XKB_KEY_n,          togglekblayout, {0} }, // changes layout to us
 
 	/* Ctrl-Alt-Backspace and Ctrl-Alt-Fx used to be handled by X server */
 	{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT,XKB_KEY_Terminate_Server, quit, {0} },
